@@ -1,5 +1,6 @@
 package com.example.bogarin.crud;
 
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -8,8 +9,13 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DBHandler extends SQLiteOpenHelper {
 
-    public satic final String DB_NAME="ControlAlumnos.db";
+    public static final String DB_NAME="ControlAlumnos.db";
     public static final int DB_VERSION=1;
+
+    public DBHandler(Context context){
+        super(context,DB_NAME,null,DB_VERSION);
+    }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
 
