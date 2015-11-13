@@ -18,11 +18,13 @@ public class DBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        db.execSQL(QueryScriptAlumnos.CREACION_SCRIPT);
+        db.execSQL(QueryScriptAlumnos.INSERTAR_DEFAULT_SCRIPT);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL(QueryScriptAlumnos.EXISTS_TABLE_SCRIPT);
+        onCreate(db);
     }
 }
