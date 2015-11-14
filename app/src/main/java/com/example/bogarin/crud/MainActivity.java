@@ -2,12 +2,10 @@ package com.example.bogarin.crud;
 
 import android.app.ListActivity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import com.example.bogarin.crud.QueryScriptAlumnos.ColumnAlumnos;
 
@@ -68,9 +66,15 @@ public class MainActivity extends ListActivity {
 
             if (resultCode == RESULT_OK) {
                 //Insertando el registro con los datos del formulario
-                dataSource.saveAlumnoRow(data.getStringExtra("nombre"),data.getStringExtra("apellidop"),data.getStringExtra("apellidom"),data.getStringExtra("fecha"));
-                //Refrescando la lista manualmente
-                adapter.changeCursor(dataSource.allAlumnos());
+                if(data.getIntExtra("agregar",-1)==1) {
+                    dataSource.saveAlumnoRow(data.getStringExtra("nombre"), data.getStringExtra("apellidop"), data.getStringExtra("apellidom"), data.getStringExtra("fecha"));
+                    //Refrescando la lista manualmente
+                    adapter.changeCursor(dataSource.allAlumnos());
+                }else if(data.getIntExtra("eliminar",-1)==2){
+                    dataSource.deleteAlumnosRow(data.getIntExtra("nControl"));
+                }else{
+                    
+                }
             }
         }
 
