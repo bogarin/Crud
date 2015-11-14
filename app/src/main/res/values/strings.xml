@@ -1,3 +1,15 @@
 <resources>
-    <string name="app_name">Crud</string>
+    <string name="app_name">Alumnos</string>
+    <string name="save">Guardar:</string>
+    <string name="cancel">Cancelar:</string>
+    <string name="name">Nombre:</string>
+    <string name="apellidop">Apellido Paterno</string>
+    <string name="apellidom">Apellido Materno</string>
+    <string name="date">Fecha de Nacimiento</string>
+    <string name="action_add">Agregar</string>
+    <string name="action_detlete">Eliminar</string>
+    <string name="action_update">Actualizar</string>
+    <string name="title_activity_eliminar">Eliminar</string>
+    <string name="eliminar_id">Agregar el Numero</string>
+    <string name="eliminarBtn">Eliminar</string>
 </resources>

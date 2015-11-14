@@ -39,32 +39,33 @@ public class QueryScriptAlumnos {
     public QueryScriptAlumnos(Context context){
         dbHandler=new DBHandler(context);
         database=dbHandler.getWritableDatabase();
+        values=new ContentValues();
     }
 
-    public void saveAlumnoRow(Alumno alumno){
-        values=new ContentValues();
-        values.put(ColumnAlumnos.NOMBRE,alumno.getNombre());
-        values.put(ColumnAlumnos.APELLIDOP,alumno.getApellidop());
-        values.put(ColumnAlumnos.APELLIDOM,alumno.getApellidom());
-        values.put(ColumnAlumnos.FECHANACIMIENTO,alumno.getFechaNacimiento());
+    public void saveAlumnoRow(String nombre,String apellidop,String apellidom,String fechaNacimiento){
+        values=null;
+        values.put(ColumnAlumnos.NOMBRE,nombre);
+        values.put(ColumnAlumnos.APELLIDOP,apellidop);
+        values.put(ColumnAlumnos.APELLIDOM,apellidom);
+        values.put(ColumnAlumnos.FECHANACIMIENTO,fechaNacimiento);
         database.insert(TABLE_NAME,null,values);
     }
 
-    public int updateAlumnos(Alumno alumno){
-        values=new ContentValues();
-        values.put(ColumnAlumnos.NOMBRE,alumno.getNombre());
-        values.put(ColumnAlumnos.APELLIDOP,alumno.getApellidop());
-        values.put(ColumnAlumnos.APELLIDOM,alumno.getApellidom());
-        values.put(ColumnAlumnos.FECHANACIMIENTO, alumno.getFechaNacimiento());
-        return database.update(TABLE_NAME, ColumnAlumnos.NUMEROCONTROL + " = ?", new String[]{String.valueOf(alumno.getNumeroControl())});
+   public int updateAlumnos(int numero,String nombre,String apellidop,String apellidom,String fechaNacimiento){
+        values=null;
+        values.put(ColumnAlumnos.NOMBRE,nombre);
+        values.put(ColumnAlumnos.APELLIDOP,apellidop);
+        values.put(ColumnAlumnos.APELLIDOM,apellidom);
+        values.put(ColumnAlumnos.FECHANACIMIENTO,fechaNacimiento);
+        return database.update(TABLE_NAME, values,ColumnAlumnos.NUMEROCONTROL+ " = "+numero,null);
     }
 
-    public void deleteAlumnosRow(Alumno alumno){
-        database.delete(TABLE_NAME, ColumnAlumnos.NUMEROCONTROL + " = ?", new String[]{String.valueOf(alumno.getNumeroControl())});
+    public void deleteAlumnosRow(int numero) {
+        database.delete(TABLE_NAME, ColumnAlumnos.NUMEROCONTROL + " = "+numero,null);
     }
 
     public Cursor allAlumnos(){
-        return database.rawQuery("select * from "+TABLE_NAME,null);
+        return database.rawQuery("select nombre, apellidop from "+TABLE_NAME,null);
     }
 
 }
